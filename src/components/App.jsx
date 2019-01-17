@@ -1,35 +1,42 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
-import Search from './Search.js'; //"./" = look in the same directory, "../" = parent dir
+import Search from './Search.js';
 import ExampleVideoData from '../data/exampleVideoData.js';
 import YOUTUBE_API_KEY from '../../src/config/youtube.js';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     let emptyVideo = {
+      id: {
+        videoId: ''
+      },
       snippet: {
-        title: ''
+        title: '',
         thumbnails: {
           default: {
             url: ''
           }
-        }
+        },
         description: ''
       }
     };
     this.state = {
       //initialize state app: pass props down to children's component in <divs>
       allVideos: [emptyVideo],
-      currentVideo: emptyVideo
+      currentVideo: emptyVideo,
+      query: ''
     };
   }
-  getVideoSelector(context) {
-    return video => {
-      context.setState({
-        currentVideo: video
-      });
-    };
+  videoSelector(video) {
+    this.setState({
+      currentVideo: video
+    });
+  }
+
+  handleQueryChange(newQuery) {
+    this.setState({
+      query: newQuery
+    });
   }
 
   render() {
@@ -37,7 +44,10 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search
+              query={this.state.query}
+              handleQueryChange={this.handleQueryChange.bind(this)}
+            />
           </div>
         </nav>
         <div className="row">
@@ -47,7 +57,7 @@ class App extends React.Component {
           <div className="col-md-5">
             <VideoList
               videos={this.state.allVideos}
-              videoSelector={this.getVideoSelector(this)}
+              videoSelector={this.videoSelector.bind(this)}
             />
           </div>
         </div>
@@ -58,12 +68,17 @@ class App extends React.Component {
   componentDidMount() {
     let options = {
       key: YOUTUBE_API_KEY,
-      query: 'south korea',
+      query: this.state.query,
       max: 5
     };
+    console.log(options);
     this.props.searchYouTube(options, videos => {
       this.setState({ allVideos: videos, currentVideo: videos[0] });
     });
+  }
+
+  componentDidUpdate() {
+    this.componentDidMount();
   }
 }
 

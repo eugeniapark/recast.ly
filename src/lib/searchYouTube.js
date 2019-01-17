@@ -1,4 +1,4 @@
-var searchYouTube = async (options, callback) => {
+const searchYouTube = (options, callback) => {
   let maxResults = options.max;
   if (maxResults === undefined) {
     maxResults = 5;
@@ -19,5 +19,14 @@ var searchYouTube = async (options, callback) => {
     success: newCallback
   });
 };
+const throttledSearchYouTube = () => {
+  let lastCalled = new Date() - 500;
+  return (options, callback) => {
+    if (new Date() - 500 > lastCalled) {
+      lastCalled = new Date();
+      searchYouTube(options, callback);
+    }
+  };
+};
 
-export default searchYouTube;
+export { searchYouTube, throttledSearchYouTube };
