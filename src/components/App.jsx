@@ -33,9 +33,15 @@ class App extends React.Component {
     });
   }
 
-  handleQueryChange(newQuery) {
-    this.setState({
-      query: newQuery
+  searchYouTube(newQuery) {
+    let options = {
+      key: YOUTUBE_API_KEY,
+      query: newQuery,
+      max: 5
+    };
+    console.log(options);
+    this.props.searchYouTube(options, videos => {
+      this.setState({ allVideos: videos, currentVideo: videos[0] });
     });
   }
 
@@ -46,7 +52,7 @@ class App extends React.Component {
           <div className="col-md-6 offset-md-3">
             <Search
               query={this.state.query}
-              handleQueryChange={this.handleQueryChange.bind(this)}
+              searchYouTube={this.searchYouTube.bind(this)}
             />
           </div>
         </nav>
@@ -63,22 +69,6 @@ class App extends React.Component {
         </div>
       </div>
     );
-  }
-
-  componentDidMount() {
-    let options = {
-      key: YOUTUBE_API_KEY,
-      query: this.state.query,
-      max: 5
-    };
-    console.log(options);
-    this.props.searchYouTube(options, videos => {
-      this.setState({ allVideos: videos, currentVideo: videos[0] });
-    });
-  }
-
-  componentDidUpdate() {
-    this.componentDidMount();
   }
 }
 

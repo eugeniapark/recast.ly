@@ -1,10 +1,17 @@
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      query: ''
+    };
   }
 
   handleQueryChange(event) {
-    this.props.handleQueryChange(event.target.value);
+    this.setState({ query: event.target.value });
+  }
+
+  searchYouTube() {
+    this.props.searchYouTube(this.state.query);
   }
 
   render() {
@@ -13,10 +20,12 @@ class Search extends React.Component {
         <input
           className="form-control"
           type="text"
-          value={this.props.query}
           onChange={this.handleQueryChange.bind(this)}
         />
-        <button className="btn hidden-sm-down">
+        <button
+          className="btn hidden-sm-down"
+          onClick={this.searchYouTube.bind(this)}
+        >
           <span className="glyphicon glyphicon-search" />
         </button>
       </div>
