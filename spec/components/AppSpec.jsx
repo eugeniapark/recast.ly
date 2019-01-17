@@ -11,9 +11,7 @@ describe('App', function() {
   var app;
 
   beforeEach(function() {
-    app = renderIntoDocument(
-      <App searchYouTube={() => {}}/>
-    );
+    app = renderIntoDocument(<App searchYouTube={() => {}} />);
   });
 
   it('should be a stateful class component', function() {
@@ -35,9 +33,12 @@ describe('App', function() {
     // because `renderIntoDocument` does not work with stateless class components
     expect(React.Component.isPrototypeOf(App)).to.be.true;
 
-    var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
+    var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(
+      app,
+      'video-list-entry-title'
+    );
 
-    videoEntryTitleElements.forEach((videoEntryTitle) => {
+    videoEntryTitleElements.forEach(videoEntryTitle => {
       Simulate.click(videoEntryTitle);
       var player = findRenderedDOMComponentWithClass(app, 'video-player');
       var playerTitle = player.querySelector('.video-player-details h3');
@@ -48,15 +49,13 @@ describe('App', function() {
     });
   });
 
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     var searchYouTubeStub;
 
     beforeEach(function() {
       searchYouTubeStub = sinon.stub();
       searchYouTubeStub.yields(window.fakeVideoData);
-      app = renderIntoDocument(
-        <App searchYouTube={searchYouTubeStub} />
-      );
+      app = renderIntoDocument(<App searchYouTube={searchYouTubeStub} />);
     });
 
     it('should call `searchYouTube` when app is initialized', function() {
@@ -66,12 +65,16 @@ describe('App', function() {
     it('should load live data when app is initialized', function() {
       expect(searchYouTubeStub.called).to.be.true;
 
-      var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
+      var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(
+        app,
+        'video-list-entry-title'
+      );
 
       videoEntryTitleElements.forEach((videoEntryTitle, i) =>
-        expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title)
+        expect(videoEntryTitle.innerHTML).to.equal(
+          fakeVideoData[i].snippet.title
+        )
       );
     });
-
   });
 });

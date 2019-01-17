@@ -2,14 +2,26 @@ import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js'; //"./" = look in the same directory, "../" = parent dir
 import ExampleVideoData from '../data/exampleVideoData.js';
+import YOUTUBE_API_KEY from '../../src/config/youtube.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    let emptyVideo = {
+      snippet: {
+        title: ''
+        thumbnails: {
+          default: {
+            url: ''
+          }
+        }
+        description: ''
+      }
+    };
     this.state = {
       //initialize state app: pass props down to children's component in <divs>
-      allVideos: ExampleVideoData,
-      currentVideo: ExampleVideoData[0]
+      allVideos: [emptyVideo],
+      currentVideo: emptyVideo
     };
   }
   getVideoSelector(context) {
@@ -41,6 +53,17 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+    let options = {
+      key: YOUTUBE_API_KEY,
+      query: 'south korea',
+      max: 5
+    };
+    this.props.searchYouTube(options, videos => {
+      this.setState({ allVideos: videos, currentVideo: videos[0] });
+    });
   }
 }
 
