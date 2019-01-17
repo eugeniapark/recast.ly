@@ -9,7 +9,7 @@ class App extends React.Component{
     super(props);
   }
   render(){
-      return (
+    return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
