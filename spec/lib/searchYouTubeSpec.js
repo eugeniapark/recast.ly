@@ -44,7 +44,9 @@ describe('searchYouTube', function() {
   beforeEach(function() {
     requests = [];
     xhr = sinon.useFakeXMLHttpRequest();
-    xhr.onCreate = function(req) { requests.push(req); };
+    xhr.onCreate = function(req) {
+      requests.push(req);
+    };
   });
 
   afterEach(function() {
@@ -77,10 +79,13 @@ describe('searchYouTube', function() {
       max: 5
     };
 
+    console.log(options);
+
     // We want this test to make a real AJAX request
     xhr.restore();
 
-    searchYouTube(options, (data) => {
+    searchYouTube(options, data => {
+      console.log(data);
       expect(hasSameShape(data, exampleVideoData)).to.be.true;
       done();
     });
