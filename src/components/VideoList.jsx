@@ -2,10 +2,15 @@ import VideoListEntry from './VideoListEntry.js';
 import App from './App.jsx';
 
 var VideoList = props => (
-  <div className="video-list">
-    {/*ill map over some array data*/}
-    {props.videos.map(video => ( //iterate over VideoList data and render
-      <VideoListEntry video={video} videoSelector={props.videoSelector} />  //imported: VideoListEntry  //pass down video value as a prop: video={video}
+    //iterate over VideoList data and render
+    //imported: VideoListEntry  //pass down video value as a prop: video={video}
+<div className="video-list">
+    {props.videos.map((video, index) => (
+      <VideoListEntry
+        key={index}
+        video={video}
+        videoSelector={props.videoSelector}
+      />
     ))}
   </div>
 );

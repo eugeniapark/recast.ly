@@ -1,10 +1,10 @@
 // TODO: Render the `App` component to the DOM
 import App from './components/App.js';
-import searchYouTube from './lib/searchYouTube.js';
+import { searchYouTube, throttledSearchYouTube } from './lib/searchYouTube.js';
 // import exampleVideos from './data/exampleVideoData.js';
 
 ReactDOM.render(
-  <App searchYouTube={searchYouTube} />,
+  <App searchYouTube={throttledSearchYouTube()} />,
   document.getElementById('app')
 );
 
