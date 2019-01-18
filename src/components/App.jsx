@@ -45,13 +45,6 @@ class App extends React.Component {
       this.setState({ allVideos: videos, currentVideo: videos[0] });
     });
   }
-  //click on title of videoListEntry
-  //change currentVideo from videoPlayer to that video
-
-  /*
-  function
-    changes currentVideo based on video provided
-  */
 
   render() {
     return (
@@ -78,33 +71,16 @@ class App extends React.Component {
       </div>
     );
   }
-
-  componentDidMount() {  //changeVideo??
-    let options = {
-      key: YOUTUBE_API_KEY,
-      query: 'south korea',
-      max: 5
-    };
-    this.props.searchYouTube(options, videos => {
-      this.setState({ allVideos: videos, currentVideo: videos[0] });  //this.setState({ currentVideo });
-    });
-  }
-
+}
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
 
+  //click on title of videoListEntry
+  //change currentVideo from videoPlayer to that video
 
-
-
-  
-//VideoPlayer 
-//VideoList
-//VideoListEntry
-//exampleVideoData
-//...
-
-//index
-//App
-//
+  /*
+  function
+    changes currentVideo based on video provided
+  */
