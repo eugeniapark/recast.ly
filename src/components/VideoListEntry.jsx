@@ -1,5 +1,4 @@
 //VIDEO TITLES
-
 var VideoListEntry = props => {
   let videoSelector = props.videoSelector;
   if (videoSelector === undefined) {
@@ -28,8 +27,6 @@ var VideoListEntry = props => {
     </div>
   );
 };
-
-//l20: get title
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
