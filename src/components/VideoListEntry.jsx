@@ -1,4 +1,3 @@
-//VIDEO TITLES
 var VideoListEntry = props => {
   let videoSelector = props.videoSelector;
   if (videoSelector === undefined) {
@@ -9,16 +8,16 @@ var VideoListEntry = props => {
       <div className="media-left media-middle">
         <img
           className="media-object"
-          src={props.video.snippet.thumbnails.default.url}  //or `https://i.ytimg.com/vi/{props.video.id.videoId}/default.jpg` to get URL
+          src={props.video.snippet.thumbnails.default.url}
           alt=""
         />
       </div>
       <div className="media-body">
         <div
           className="video-list-entry-title"
-          onClick={videoSelector.bind(null, props.video)}  //*.bind() / *onClick()
+          onClick={videoSelector.bind(null, props.video)}
         >
-          {props.video.snippet.title}  {/*when someone ^clicks tag, invoked function thing in here onClick{props.changeVideo(props.video)}*/}
+          {props.video.snippet.title}
         </div>
         <div className="video-list-entry-detail">
           {props.video.snippet.description}

@@ -1,10 +1,8 @@
-import VideoList from './VideoList.js';  //don't need .jsx bc transpiler won't recognize (using ES5 not ES6) -- in package.json we made it only able to transpile in ES5 (babel) 
-import VideoPlayer from './VideoPlayer.js';  //all these files are getting compiled
-import Search from './Search.js';  //"./" = look in the same directory, "../" = parent dir
+import VideoList from './VideoList.js';
+import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
 import ExampleVideoData from '../data/exampleVideoData.js';
 import YOUTUBE_API_KEY from '../../src/config/youtube.js';
-//doesn't need to import VideoListEntry
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +20,10 @@ class App extends React.Component {
         description: ''
       }
     };
-    this.state = {  //initialize state app: pass props down to children's component in <divs>
+    this.state = {
+      //initialize state app: pass props down to children's component in <divs>
       allVideos: [emptyVideo],
-      currentVideo: emptyVideo,  //this.props.videos[0] - bad practice but for this sprint
+      currentVideo: emptyVideo,
       query: ''
     };
   }
@@ -76,11 +75,3 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
-
-//click on title of videoListEntry
-//change currentVideo from videoPlayer to that video
-
-/*
-function
-  changes currentVideo based on video provided
-*/
