@@ -77,10 +77,10 @@ class App extends React.Component {
 // `var` declarations will only exist globally where explicitly defined
 export default App;
 
-  //click on title of videoListEntry
-  //change currentVideo from videoPlayer to that video
+//click on title of videoListEntry
+//change currentVideo from videoPlayer to that video
 
-  /*
-  function
-    changes currentVideo based on video provided
-  */
+/*
+function
+  changes currentVideo based on video provided
+*/
