@@ -1,14 +1,11 @@
-import VideoListEntry from './VideoListEntry.js';  
-import App from './App.jsx';
+import VideoListEntry from './VideoListEntry.js';
 
 var VideoList = props => (
-    //iterate over VideoList data and render
-    //imported: VideoListEntry  //pass down video value as a prop: video={video}
-<div className="video-list">
-    {props.videos.map((video, index) => (
-      <VideoListEntry
+  <div className="video-list">
+    {props.videos.map((video, index) => (  //iterate over VideoList data and render (map over array data)
+      <VideoListEntry  //imported: VideoListEntry  
         key={index}
-        video={video}
+        video={video}  //pass down video value as a prop: video={video}
         videoSelector={props.videoSelector}
       />
     ))}
@@ -26,12 +23,14 @@ VideoList.propTypes = {
 export default VideoList; //exports to Global
 
 
-//React: when need something evaluated put in {}
-//when use variable (props), need to define in the parameters
+/*
+React: 
+- When need something evaluated put in {}
+- When use variable (props), need to define in the parameters
 
 
-//App
-// VideoListenEntry
-// StateChangedEvent
-
-// Video list entry
+1. App
+2. VideoListEntry
+3. State changed event
+4. Video list entry
+*/
